@@ -85,5 +85,6 @@
 
 <style lang="scss" scoped>
 	.page-home {
+		position: relative;
 	}
 </style>

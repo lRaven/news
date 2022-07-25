@@ -40,6 +40,10 @@
 		font-size: 2.4rem;
 		font-weight: 500;
 	}
+	h3 {
+		font-size: 2rem;
+		font-weight: 600;
+	}
 	p {
 		font-size: 1.6rem;
 	}
