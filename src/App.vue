@@ -1,30 +1,59 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+	<div class="site">
+		<navigation-panel />
+
+		<router-view v-slot="{ Component }">
+			<transition mode="out-in">
+				<component :is="Component" />
+			</transition>
+		</router-view>
+	</div>
 </template>
 
+<script>
+	import NavigationPanel from "@/components/NavigationPanel.vue";
+
+	export default {
+		watch: {
+			$route(to) {
+				document.title = to.meta.title || "Default Title";
+			},
+		},
+		components: {
+			NavigationPanel,
+		},
+	};
+</script>
+
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+	@import "@/assets/scss/variables";
 
-nav {
-  padding: 30px;
+	* {
+		font-family: "Open Sans", sans-serif;
+	}
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+	h1 {
+		font-size: 4rem;
+		font-weight: 700;
+	}
+	h2 {
+		font-size: 2.4rem;
+		font-weight: 500;
+	}
+	p {
+		font-size: 1.6rem;
+	}
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
+	.main {
+		margin-left: 30rem;
+		height: 100vh;
+		overflow-y: auto;
+		overflow-x: hidden;
+
+		background-color: rgba($light-blue, $alpha: 0.2);
+		padding: 3rem;
+		&__title {
+			margin-bottom: 2rem;
+		}
+	}
 </style>
